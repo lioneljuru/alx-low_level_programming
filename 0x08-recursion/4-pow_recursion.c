@@ -4,7 +4,7 @@
  * _pow_recursion - prints value of a number raised tothe power of another
  * @x: base
  * @y: exponent
- * 
+ *
  * Return: power
  */
 int _pow_recursion(int x, int y)
