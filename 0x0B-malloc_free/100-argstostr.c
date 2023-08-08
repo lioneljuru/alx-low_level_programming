@@ -6,7 +6,7 @@
  *
  * Return: pointer to the new string
  */
-char *argstorstr(int ac, char **av)
+char *argstostr(int ac, char **av)
 {
 	vhar *new_string = NULL;
 	int k = 0, i = ac, j, sum = 0, temp = 0;
