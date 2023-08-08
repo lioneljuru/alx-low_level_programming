@@ -6,7 +6,7 @@
  *
  * Return: NULL if it's empyt or fails, pointer otherwise
  */
-char *create_arrya(unsigned int size, char c)
+char *create_array(unsigned int size, char c)
 {
 	char *array;
 	unsigned int index;
