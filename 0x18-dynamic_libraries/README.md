@@ -1,1 +1,0 @@
-project about dynamic libraries
