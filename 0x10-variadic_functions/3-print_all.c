@@ -1,4 +1,4 @@
-#incllude "variadic_functions.h"
+#include "variadic_functions.h"
 /**
  * print_char - printsa char
  * @arg: list of arguments pointing to the character to print
@@ -74,7 +74,7 @@ void print_all(const char * const format, ...)
 		{"f", print_float},
 		{"s", print_string}
 	};
-	va_atart(args, format);
+	va_start(args, format);
 	while (format && (*(format + i)))
 	{
 		j = 0;
