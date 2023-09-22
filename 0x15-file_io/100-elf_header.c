@@ -23,6 +23,7 @@ void print_error(const char *message)
  */
 void print_elf_header(const char *filename)
 {
+	Elf64_Ehdr *header;
 	int fd = open(filename, O_RDONLY);
 
 	if (fd == -1)
@@ -30,32 +31,30 @@ void print_elf_header(const char *filename)
 		print_error("Failed to open file");
 	}
 
-	Elf64_Ehdr *header;
-
 	if (read(fd, &header, sizeof(header)) != sizeof(header))
 	{
 		print_error("Failed to read ELF header");
 	}
-	if (header->e_ident[EI_MAG0] != ELFMAG0 ||
-			header->e_ident[EI_MAG1] != ELFMAG1 ||
-			header->e_ident[EI_MAG2] != ELFMAG2 ||
-			header->e_ident[EI_MAG3] != ELFMAG3)
+	if (header.e_ident[EI_MAG0] != ELFMAG0 ||
+			header.e_ident[EI_MAG1] != ELFMAG1 ||
+			header.e_ident[EI_MAG2] != ELFMAG2 ||
+			header.e_ident[EI_MAG3] != ELFMAG3)
 	{
 		print_error("Not an ELF file");
 	}
-	printf("Magic: %c%c%c%c\n", header->e_ident[EI_MAG1],
-			header->e_ident[EI_MAG2], header->e_ident[EI_MAG3],
-			header->e_ident[EI_MAG0]);
-	printf("Class: %d-bit\n", header->e_ident[EI_CLASS] ==
+	printf("Magic: %c%c%c%c\n", header.e_ident[EI_MAG1],
+			header.e_ident[EI_MAG2], header.e_ident[EI_MAG3],
+			header.e_ident[EI_MAG0]);
+	printf("Class: %d-bit\n", header.e_ident[EI_CLASS] ==
 			ELFCLASS32 ? 32 : 64);
-	printf("Data: %s\n", header->e_ident[EI_DATA] == ELFDATA2LSB ?
+	printf("Data: %s\n", header.e_ident[EI_DATA] == ELFDATA2LSB ?
 			"2's complement, little endian" : "2's complement, big endian");
-	printf("Version: %d\n", header->e_ident[EI_VERSION]);
-	printf("OS/ABI: %s\n", header->e_ident[EI_OSABI] == ELFOSABI_SYSV ?
+	printf("Version: %d\n", header.e_ident[EI_VERSION]);
+	printf("OS/ABI: %s\n", header.e_ident[EI_OSABI] == ELFOSABI_SYSV ?
 			"UNIX System V ABI" : "Unknown");
-	printf("ABI Version: %d\n", header->e_ident[EI_ABIVERSION]);
-	printf("Type: %s\n", header->e_type == ET_EXEC ? "Executable file" :
-			(header->e_type == ET_DYN ? "Shared object file" : "Unknown"));
+	printf("ABI Version: %d\n", header.e_ident[EI_ABIVERSION]);
+	printf("Type: %s\n", header.e_type == ET_EXEC ? "Executable file" :
+			(header.e_type == ET_DYN ? "Shared object file" : "Unknown"));
 	printf("Entry point address: 0x%lx\n", header.e_entry);
 
 	close(fd);
