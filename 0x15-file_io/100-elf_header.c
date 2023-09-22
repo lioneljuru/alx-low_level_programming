@@ -25,6 +25,12 @@ void print_elf_header(const char *filename)
 	{
 		print_error("Failed to open file");
 	}
+
+	Elf64_Ehdr header;
+	if (read(fd, &header, sizeof(header)) != sizeof(header))
+	{
+		print_error("Failed to read ELF header")
+	}
 	if (header.e_ident[EI_MAG0] != ELFMAG0 ||
 			header.e_ident[EI_MAG1] != ELFMAG1 ||
 			header.e_ident[EI_MAG2] != ELFMAG2 ||
