@@ -21,11 +21,12 @@ void error_exit(const char *message)
  */
 int main(int argc, char *argv[])
 {
-	int fd_from, fd_to;
+	int fd_from = 0;
+	int fd_to = 0;
 	char buffer[BUFFER_SIZE];
 	ssize_t bytes_read, bytes_written;
-	const char *file_from;
-	const char *file_to;
+	const char *file_from = argv[1];
+	const char *file_to = argv[2];
 	
 	if (argc != 3)
 	{
