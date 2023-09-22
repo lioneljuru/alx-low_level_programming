@@ -11,7 +11,7 @@
  */
 void print_error(const char *message)
 {
-	fprintf(sdterr, "Error: %s\n", message);
+	fprintf(stderr, "Error: %s\n", message);
 	exit(98);
 }
 
@@ -33,7 +33,7 @@ void print_elf_header(const char *filename)
 	Elf64_Ehdr header;
 	if (read(fd, &header, sizeof(header)) != sizeof(header))
 	{
-		print_error("Failed to read ELF header")
+		print_error("Failed to read ELF header");
 	}
 	if (header.e_ident[EI_MAG0] != ELFMAG0 ||
 			header.e_ident[EI_MAG1] != ELFMAG1 ||
@@ -50,7 +50,7 @@ void print_elf_header(const char *filename)
 	printf("Data: %s\n", header.e_ident[EI_DATA] == ELFDATA2LSB ?
 			"2's complement, little endian" : "2's complement, big endian");
 	printf("Version: %d\n", header.e_ident[EI_VERSION]);
-	printf("OS/ABI: %S\n", header.e_ident[EI_OSABI] == ELFOSABI_SYSV ?
+	printf("OS/ABI: %s\n", header.e_ident[EI_OSABI] == ELFOSABI_SYSV ?
 			"UNIX System V ABI" : "Unknown");
 	printf("ABI Version: %d\n", header.e_ident[EI_ABIVERSION]);
 	printf("Type: %s\n", header.e_type == ET_EXEC ? "Executable file" :
