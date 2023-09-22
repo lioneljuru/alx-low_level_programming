@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdlib.h>
 /**
  * error_exit - prints out error messages
  * @message: the error to print
@@ -21,7 +22,7 @@ void error_exit(const char *message)
 int main(int argc, char *argv[])
 {
 	int fd_from, fd_to;
-	char buffer[BUFFER-SIZE];
+	char buffer[BUFFER_SIZE];
 	ssize_t bytes_read, bytes_written;
 	const char *file_from;
 	const char *file_to;
@@ -60,7 +61,7 @@ int main(int argc, char *argv[])
 	}
 	if (close(fd_from) == -1)
 	{
-		dprintf(SRDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
 		exit(100);
 	}
 	exit(EXIT_SUCCESS);
