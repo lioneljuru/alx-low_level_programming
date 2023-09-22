@@ -23,7 +23,7 @@ void print_error(const char *message)
  */
 void print_elf_header(const char *filename)
 {
-	Elf64_Ehdr *header;
+	Elf64_Ehdr header;
 	int fd = open(filename, O_RDONLY);
 
 	if (fd == -1)
