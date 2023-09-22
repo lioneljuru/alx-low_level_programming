@@ -4,7 +4,7 @@
  * @n: the number
  * @index: index strarting form 0 of the required bit
  *
- * return: the converted value
+ * Return: the converted value
  */
 int get_bit(unsigned long int n, unsigned int index)
 {

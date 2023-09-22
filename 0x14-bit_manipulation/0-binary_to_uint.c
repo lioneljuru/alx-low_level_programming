@@ -26,7 +26,7 @@ unsigned  int binary_to_uint(const char *b)
 }
 
 /**
- * check_bin_string - checks if a string is binary
+ * check_valid_string - checks if a string is binary
  * @b: string to check
  *
  * Return: 1 if string is valid, 0 otherwise
